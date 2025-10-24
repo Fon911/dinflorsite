@@ -1,3 +1,4 @@
+import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
 import "./globals.css";
 
@@ -18,9 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="overflow-x-hidden bg-[#E8F3F2] overflow-y-auto">
         <Header />
-        {children}
+        <div className="mb-[130px]">{children}</div>
+        <Footer />
       </body>
     </html>
   );

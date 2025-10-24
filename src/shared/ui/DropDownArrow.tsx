@@ -16,7 +16,7 @@ export default function DropDownArrow({
   return (
     <div className={`flex items-center ${className || ""}`}>
       <Image
-        src={`/icon/ui/DropDownArrow${white ? "White" : ""}.svg`}
+        src={`/icon/ui/DropDownArrow${white ? "White" : "Black"}.svg`}
         alt="DropDownArrow"
         width={16}
         height={8}

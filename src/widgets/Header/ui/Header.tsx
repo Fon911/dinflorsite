@@ -4,7 +4,6 @@ import { useToggle } from "@/shared/hooks/useToggle";
 import { DropDownArrow } from "@/shared/ui";
 import Image from "next/image";
 import HeaderBurger from "./HeaderBurger";
-import BurgerListDropDown from "./BurgerListDropDown";
 
 const Header = () => {
   // Отдельные состояния для каждой кнопки
@@ -15,23 +14,24 @@ const Header = () => {
   const burgerMenu = useToggle();
 
   return (
-    <div className="w-full items-center justify-center">
+    <div className="w-full items-center justify-center bg-white">
       {/* Основной хедер */}
       <div className="px-4 md:px-8 lg:px-[107px] pb-[11px] flex flex-row items-center justify-between pt-[11px]">
-        <Image
-          src="/icon/ui/HeaderIcon.png"
-          alt="HeaderIcon"
-          width={120}
-          height={68}
-          priority
-          className="w-[80px] h-[45px] md:w-[100px] md:h-[56px] lg:w-[120px] lg:h-[68px]"
-        />
-
+        <a href="/">
+          <Image
+            src="/icon/ui/HeaderIcon.png"
+            alt="HeaderIcon"
+            width={120}
+            height={68}
+            priority
+            className=" "
+          />
+        </a>
         {/* Десктопное меню */}
         <div className="hidden lg:flex flex-row">
-          <ul className="flex flex-row items-center font-semibold gap-[50px] text-[15px] text-main-200">
+          <ul className="flex flex-row items-center  font-semibold gap-[50px] text-[15px] text-main-200">
             <li>
-              <a href="#">Каталог</a>
+              <a href="/Catalog">Каталог</a>
             </li>
             <li>
               <a href="#">Тренды</a>
@@ -140,7 +140,7 @@ const Header = () => {
 
       {/* Черная навигационная панель - только десктоп */}
       <div className="hidden lg:flex py-[11px] flex-row bg-black">
-        <ul className="font-normal flex flex-row items-center mx-auto gap-[44px] text-[15px] text-white">
+        <ul className="font-normal flex flex-row items-center  mx-auto gap-[44px] text-[15px] text-white">
           <li>
             <button
               onClick={deliveryTime.toggle}
