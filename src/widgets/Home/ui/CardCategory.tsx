@@ -1,6 +1,6 @@
 "use client";
 import { productsData } from "@/shared/data";
-import { Products } from "@/widgets/Catalog/ui/Cards";
+import { Products } from "@/shared/ui/Cards";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -24,10 +24,11 @@ export const CardCategory = ({ categoryName }: CardCategoryProps) => {
     <div className="justify-center items-center flex flex-col mb-[80px]">
       <h2 className="mb-[40px] text-[24px] font-medium">{categoryName}</h2>
 
-      <div className="grid xl:grid-cols-3 gap-[20px]">
+      <div className="grid grid-cols-2  px-[20px] gap-[16px] xl:grid-cols-3 lg:gap-[20px]">
         {categoryProducts.slice(0, visibleProducts).map((product) => (
           <Products
             key={product.id}
+            id={product.id}
             discount={product.discount}
             cost={product.cost}
             deliveryCost={product.deliveryCost}
@@ -50,7 +51,7 @@ export const CardCategory = ({ categoryName }: CardCategoryProps) => {
         </div>
       )}
 
-      <div className="flex flex-row gap-[40px] max-w-[913px] py-[40px] rounded-[24px] bg-white mt-[40px] px-[18px]">
+      <div className=" lg:flex-row gap-[40px] lg:flex hidden flex-col max-w-[913px] py-[40px] rounded-[24px] bg-white mt-[40px] px-[18px]">
         <div>
           <h2 className="text-[24px] font-bold">Печать на холстах</h2>
           <p className="text-[15px] font-normal mt-[15px]">

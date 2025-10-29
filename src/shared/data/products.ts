@@ -1,12 +1,15 @@
+import { Composition } from "./composition";
 import { Category, FilterByCategoryMap } from "./filters";
+import { TraitId } from "./traits";
 
-type ProductData = {
+export type ProductData = {
   [K in Category]: {
     category: K;
     filter: FilterByCategoryMap[K];
   };
 }[Category] & {
   id: number;
+  shopId: number;
   discount: number;
   cost: number;
   deliveryCost: number;
@@ -14,24 +17,67 @@ type ProductData = {
   description: string;
   rating: number;
   reviewsCount: number;
+  image: {
+    mainImage: string;
+    otherImages: string[];
+  };
+  width?: number;
+  height?: number;
+  size?: string;
+  composition?: Composition;
+  traits?: TraitId[];
+  bucketSize?: {
+    width: number;
+    height: number;
+  };
 };
 
 export const productsData: ProductData[] = [
-  // 🌸 Цветы в корзине
+  // 🌸 Цветы в корзине (Магазин 1: Цветочный рай)
   {
     id: 1,
+    shopId: 1,
     discount: 0,
     cost: 1500,
     deliveryCost: 199,
     title: "Звездопад 1",
-    description: "Сияющая композиция, наполненная яркими акцентами",
+    description:
+      "Объемный нежный букет из белых и розовых французских вывернутых роз с эвкалиптом! Такой букет обязательно произведет впечатление!   Цветовая палитра – это деликатное сочетание белого и розового. Белые розы символизируют чистоту, невинность и новое начало, а нежно-розовые добавляют нотку романтики, благодарности и восхищения. ",
     rating: 4.87,
     reviewsCount: 500,
     category: "Цветы",
     filter: "Цветы в корзине",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: [
+        "/test/Luna.png",
+        "/test/Luna.png",
+        "/test/Luna.png",
+        "/test/Luna.png",
+      ],
+    },
+    width: 20,
+    height: 30,
+    size: "M",
+    traits: [1, 2] as TraitId[],
+    bucketSize: {
+      width: 20,
+      height: 30,
+    },
+    composition: [
+      {
+        name: "Роза",
+        count: 5,
+      },
+      {
+        name: "Эвкалипт",
+        count: 3,
+      },
+    ],
   },
   {
     id: 2,
+    shopId: 1,
     discount: 0,
     cost: 1500,
     deliveryCost: 199,
@@ -41,9 +87,33 @@ export const productsData: ProductData[] = [
     reviewsCount: 500,
     category: "Цветы",
     filter: "Цветы в корзине",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [2, 4] as TraitId[],
+    bucketSize: {
+      width: 25,
+      height: 35,
+    },
+    composition: [
+      {
+        name: "Тюльпан",
+        count: 7,
+      },
+      {
+        name: "Пион",
+        count: 3,
+      },
+      {
+        name: "Сирень",
+        count: 2,
+      },
+    ],
   },
   {
     id: 3,
+    shopId: 1,
     discount: 0,
     cost: 1500,
     deliveryCost: 199,
@@ -53,9 +123,29 @@ export const productsData: ProductData[] = [
     reviewsCount: 500,
     category: "Цветы",
     filter: "Цветы в корзине",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 2, 5] as TraitId[],
+    bucketSize: {
+      width: 22,
+      height: 28,
+    },
+    composition: [
+      {
+        name: "Лилия",
+        count: 4,
+      },
+      {
+        name: "Роза",
+        count: 3,
+      },
+    ],
   },
   {
     id: 4,
+    shopId: 1,
     discount: 0,
     cost: 1500,
     deliveryCost: 199,
@@ -65,9 +155,34 @@ export const productsData: ProductData[] = [
     reviewsCount: 500,
     category: "Цветы",
     filter: "Цветы в корзине",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: [
+        "/test/Luna.png",
+        "/test/Luna.png",
+        "/test/Luna.png",
+        "/test/Luna.png",
+      ],
+    },
+    traits: [3] as TraitId[],
+    bucketSize: {
+      width: 18,
+      height: 32,
+    },
+    composition: [
+      {
+        name: "Гвоздика",
+        count: 10,
+      },
+      {
+        name: "Эвкалипт",
+        count: 2,
+      },
+    ],
   },
   {
     id: 5,
+    shopId: 1,
     discount: 0,
     cost: 1500,
     deliveryCost: 199,
@@ -77,9 +192,30 @@ export const productsData: ProductData[] = [
     reviewsCount: 500,
     category: "Цветы",
     filter: "Цветы в корзине",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 4] as TraitId[],
+    bucketSize: {
+      width: 24,
+      height: 30,
+    },
+    composition: [
+      {
+        name: "Калла",
+        count: 5,
+      },
+      {
+        name: "Сирень",
+        count: 3,
+      },
+    ],
   },
+  // 🌸 Цветы в корзине (Магазин 2: Букет мечты)
   {
     id: 6,
+    shopId: 2,
     discount: 0,
     cost: 1500,
     deliveryCost: 199,
@@ -89,9 +225,29 @@ export const productsData: ProductData[] = [
     reviewsCount: 500,
     category: "Цветы",
     filter: "Цветы в корзине",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [2, 3] as TraitId[],
+    bucketSize: {
+      width: 21,
+      height: 29,
+    },
+    composition: [
+      {
+        name: "Пион",
+        count: 6,
+      },
+      {
+        name: "Роза",
+        count: 4,
+      },
+    ],
   },
   {
     id: 7,
+    shopId: 2,
     discount: 0,
     cost: 1500,
     deliveryCost: 199,
@@ -101,9 +257,29 @@ export const productsData: ProductData[] = [
     reviewsCount: 500,
     category: "Цветы",
     filter: "Цветы в корзине",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [5] as TraitId[],
+    bucketSize: {
+      width: 26,
+      height: 34,
+    },
+    composition: [
+      {
+        name: "Тюльпан",
+        count: 11,
+      },
+      {
+        name: "Эвкалипт",
+        count: 5,
+      },
+    ],
   },
   {
     id: 8,
+    shopId: 2,
     discount: 0,
     cost: 1500,
     deliveryCost: 199,
@@ -113,9 +289,33 @@ export const productsData: ProductData[] = [
     reviewsCount: 500,
     category: "Цветы",
     filter: "Цветы в корзине",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png"],
+    },
+    traits: [1, 3, 4] as TraitId[],
+    bucketSize: {
+      width: 19,
+      height: 31,
+    },
+    composition: [
+      {
+        name: "Роза",
+        count: 7,
+      },
+      {
+        name: "Лилия",
+        count: 2,
+      },
+      {
+        name: "Гвоздика",
+        count: 3,
+      },
+    ],
   },
   {
     id: 9,
+    shopId: 2,
     discount: 0,
     cost: 1500,
     deliveryCost: 199,
@@ -125,9 +325,34 @@ export const productsData: ProductData[] = [
     reviewsCount: 500,
     category: "Цветы",
     filter: "Цветы в корзине",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: [
+        "/test/Luna.png",
+        "/test/Luna.png",
+        "/test/Luna.png",
+        "/test/Luna.png",
+      ],
+    },
+    traits: [2] as TraitId[],
+    bucketSize: {
+      width: 23,
+      height: 27,
+    },
+    composition: [
+      {
+        name: "Пион",
+        count: 5,
+      },
+      {
+        name: "Сирень",
+        count: 4,
+      },
+    ],
   },
   {
     id: 10,
+    shopId: 2,
     discount: 0,
     cost: 1500,
     deliveryCost: 199,
@@ -137,11 +362,35 @@ export const productsData: ProductData[] = [
     reviewsCount: 500,
     category: "Цветы",
     filter: "Цветы в корзине",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 2, 3] as TraitId[],
+    bucketSize: {
+      width: 20,
+      height: 33,
+    },
+    composition: [
+      {
+        name: "Калла",
+        count: 3,
+      },
+      {
+        name: "Роза",
+        count: 5,
+      },
+      {
+        name: "Эвкалипт",
+        count: 2,
+      },
+    ],
   },
 
-  // 🌷 Цветы поштучно
+  // 🌷 Цветы поштучно (Магазин 1: Цветочный рай)
   {
     id: 11,
+    shopId: 1,
     discount: 0,
     cost: 800,
     deliveryCost: 199,
@@ -151,9 +400,19 @@ export const productsData: ProductData[] = [
     reviewsCount: 210,
     category: "Цветы",
     filter: "Цветы поштучно",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1] as TraitId[],
+    bucketSize: {
+      width: 15,
+      height: 25,
+    },
   },
   {
     id: 12,
+    shopId: 1,
     discount: 0,
     cost: 800,
     deliveryCost: 199,
@@ -163,9 +422,25 @@ export const productsData: ProductData[] = [
     reviewsCount: 210,
     category: "Цветы",
     filter: "Цветы поштучно",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png"],
+    },
+    traits: [2, 3] as TraitId[],
+    bucketSize: {
+      width: 12,
+      height: 22,
+    },
+    composition: [
+      {
+        name: "Тюльпан",
+        count: 1,
+      },
+    ],
   },
   {
     id: 13,
+    shopId: 1,
     discount: 0,
     cost: 800,
     deliveryCost: 199,
@@ -175,10 +450,26 @@ export const productsData: ProductData[] = [
     reviewsCount: 210,
     category: "Цветы",
     filter: "Цветы поштучно",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [4] as TraitId[],
+    bucketSize: {
+      width: 14,
+      height: 24,
+    },
+    composition: [
+      {
+        name: "Пион",
+        count: 1,
+      },
+    ],
   },
   {
     id: 14,
-    discount: 0,
+    shopId: 1,
+    discount: 220,
     cost: 800,
     deliveryCost: 199,
     title: "Звездопад 14",
@@ -187,9 +478,25 @@ export const productsData: ProductData[] = [
     reviewsCount: 210,
     category: "Цветы",
     filter: "Цветы поштучно",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 5] as TraitId[],
+    bucketSize: {
+      width: 16,
+      height: 26,
+    },
+    composition: [
+      {
+        name: "Лилия",
+        count: 1,
+      },
+    ],
   },
   {
     id: 15,
+    shopId: 1,
     discount: 0,
     cost: 800,
     deliveryCost: 199,
@@ -199,9 +506,25 @@ export const productsData: ProductData[] = [
     reviewsCount: 210,
     category: "Цветы",
     filter: "Цветы поштучно",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png"],
+    },
+    traits: [3] as TraitId[],
+    bucketSize: {
+      width: 13,
+      height: 23,
+    },
+    composition: [
+      {
+        name: "Гвоздика",
+        count: 3,
+      },
+    ],
   },
   {
     id: 16,
+    shopId: 1,
     discount: 0,
     cost: 800,
     deliveryCost: 199,
@@ -211,9 +534,25 @@ export const productsData: ProductData[] = [
     reviewsCount: 210,
     category: "Цветы",
     filter: "Цветы поштучно",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [2, 4] as TraitId[],
+    bucketSize: {
+      width: 15,
+      height: 27,
+    },
+    composition: [
+      {
+        name: "Калла",
+        count: 2,
+      },
+    ],
   },
   {
     id: 17,
+    shopId: 1,
     discount: 0,
     cost: 800,
     deliveryCost: 199,
@@ -223,9 +562,25 @@ export const productsData: ProductData[] = [
     reviewsCount: 210,
     category: "Цветы",
     filter: "Цветы поштучно",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 2] as TraitId[],
+    bucketSize: {
+      width: 14,
+      height: 25,
+    },
+    composition: [
+      {
+        name: "Роза",
+        count: 3,
+      },
+    ],
   },
   {
     id: 18,
+    shopId: 1,
     discount: 0,
     cost: 800,
     deliveryCost: 199,
@@ -235,9 +590,25 @@ export const productsData: ProductData[] = [
     reviewsCount: 210,
     category: "Цветы",
     filter: "Цветы поштучно",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png"],
+    },
+    traits: [5] as TraitId[],
+    bucketSize: {
+      width: 12,
+      height: 21,
+    },
+    composition: [
+      {
+        name: "Сирень",
+        count: 2,
+      },
+    ],
   },
   {
     id: 19,
+    shopId: 1,
     discount: 0,
     cost: 800,
     deliveryCost: 199,
@@ -247,9 +618,25 @@ export const productsData: ProductData[] = [
     reviewsCount: 210,
     category: "Цветы",
     filter: "Цветы поштучно",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [3, 4] as TraitId[],
+    bucketSize: {
+      width: 16,
+      height: 28,
+    },
+    composition: [
+      {
+        name: "Тюльпан",
+        count: 5,
+      },
+    ],
   },
   {
     id: 20,
+    shopId: 1,
     discount: 0,
     cost: 800,
     deliveryCost: 199,
@@ -259,11 +646,31 @@ export const productsData: ProductData[] = [
     reviewsCount: 210,
     category: "Цветы",
     filter: "Цветы поштучно",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 3, 5] as TraitId[],
+    bucketSize: {
+      width: 15,
+      height: 24,
+    },
+    composition: [
+      {
+        name: "Пион",
+        count: 2,
+      },
+      {
+        name: "Эвкалипт",
+        count: 1,
+      },
+    ],
   },
 
-  // 🌹 Авторские букеты
+  // 🌹 Авторские букеты (Магазин 1: Цветочный рай)
   {
     id: 21,
+    shopId: 1,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
@@ -273,9 +680,37 @@ export const productsData: ProductData[] = [
     reviewsCount: 320,
     category: "Цветы",
     filter: "Авторские букеты",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 2] as TraitId[],
+    bucketSize: {
+      width: 28,
+      height: 40,
+    },
+    composition: [
+      {
+        name: "Роза",
+        count: 15,
+      },
+      {
+        name: "Лилия",
+        count: 3,
+      },
+      {
+        name: "Гвоздика",
+        count: 5,
+      },
+      {
+        name: "Эвкалипт",
+        count: 7,
+      },
+    ],
   },
   {
     id: 22,
+    shopId: 1,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
@@ -285,9 +720,33 @@ export const productsData: ProductData[] = [
     reviewsCount: 320,
     category: "Цветы",
     filter: "Авторские букеты",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [3, 4, 5] as TraitId[],
+    bucketSize: {
+      width: 30,
+      height: 42,
+    },
+    composition: [
+      {
+        name: "Пион",
+        count: 8,
+      },
+      {
+        name: "Тюльпан",
+        count: 12,
+      },
+      {
+        name: "Сирень",
+        count: 5,
+      },
+    ],
   },
   {
     id: 23,
+    shopId: 1,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
@@ -297,9 +756,33 @@ export const productsData: ProductData[] = [
     reviewsCount: 320,
     category: "Цветы",
     filter: "Авторские букеты",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png"],
+    },
+    traits: [2] as TraitId[],
+    bucketSize: {
+      width: 26,
+      height: 38,
+    },
+    composition: [
+      {
+        name: "Калла",
+        count: 7,
+      },
+      {
+        name: "Лилия",
+        count: 4,
+      },
+      {
+        name: "Эвкалипт",
+        count: 6,
+      },
+    ],
   },
   {
     id: 24,
+    shopId: 1,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
@@ -309,9 +792,38 @@ export const productsData: ProductData[] = [
     reviewsCount: 320,
     category: "Цветы",
     filter: "Авторские букеты",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: [
+        "/test/Luna.png",
+        "/test/Luna.png",
+        "/test/Luna.png",
+        "/test/Luna.png",
+      ],
+    },
+    traits: [1, 3] as TraitId[],
+    bucketSize: {
+      width: 32,
+      height: 44,
+    },
+    composition: [
+      {
+        name: "Роза",
+        count: 20,
+      },
+      {
+        name: "Гвоздика",
+        count: 8,
+      },
+      {
+        name: "Эвкалипт",
+        count: 10,
+      },
+    ],
   },
   {
     id: 25,
+    shopId: 1,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
@@ -321,9 +833,33 @@ export const productsData: ProductData[] = [
     reviewsCount: 320,
     category: "Цветы",
     filter: "Авторские букеты",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [4] as TraitId[],
+    bucketSize: {
+      width: 27,
+      height: 39,
+    },
+    composition: [
+      {
+        name: "Лилия",
+        count: 6,
+      },
+      {
+        name: "Пион",
+        count: 5,
+      },
+      {
+        name: "Сирень",
+        count: 4,
+      },
+    ],
   },
   {
     id: 26,
+    shopId: 3,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
@@ -333,9 +869,33 @@ export const productsData: ProductData[] = [
     reviewsCount: 320,
     category: "Цветы",
     filter: "Авторские букеты",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 5] as TraitId[],
+    bucketSize: {
+      width: 29,
+      height: 41,
+    },
+    composition: [
+      {
+        name: "Тюльпан",
+        count: 15,
+      },
+      {
+        name: "Роза",
+        count: 10,
+      },
+      {
+        name: "Эвкалипт",
+        count: 5,
+      },
+    ],
   },
   {
     id: 27,
+    shopId: 3,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
@@ -345,9 +905,33 @@ export const productsData: ProductData[] = [
     reviewsCount: 320,
     category: "Цветы",
     filter: "Авторские букеты",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png"],
+    },
+    traits: [2, 3] as TraitId[],
+    bucketSize: {
+      width: 25,
+      height: 37,
+    },
+    composition: [
+      {
+        name: "Гвоздика",
+        count: 12,
+      },
+      {
+        name: "Калла",
+        count: 4,
+      },
+      {
+        name: "Сирень",
+        count: 6,
+      },
+    ],
   },
   {
     id: 28,
+    shopId: 3,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
@@ -357,9 +941,42 @@ export const productsData: ProductData[] = [
     reviewsCount: 320,
     category: "Цветы",
     filter: "Авторские букеты",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: [
+        "/test/Luna.png",
+        "/test/Luna.png",
+        "/test/Luna.png",
+        "/test/Luna.png",
+      ],
+    },
+    traits: [1, 4] as TraitId[],
+    bucketSize: {
+      width: 31,
+      height: 43,
+    },
+    composition: [
+      {
+        name: "Пион",
+        count: 10,
+      },
+      {
+        name: "Роза",
+        count: 12,
+      },
+      {
+        name: "Лилия",
+        count: 5,
+      },
+      {
+        name: "Эвкалипт",
+        count: 8,
+      },
+    ],
   },
   {
     id: 29,
+    shopId: 3,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
@@ -369,9 +986,33 @@ export const productsData: ProductData[] = [
     reviewsCount: 320,
     category: "Цветы",
     filter: "Авторские букеты",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [3, 5] as TraitId[],
+    bucketSize: {
+      width: 28,
+      height: 40,
+    },
+    composition: [
+      {
+        name: "Калла",
+        count: 8,
+      },
+      {
+        name: "Тюльпан",
+        count: 9,
+      },
+      {
+        name: "Сирень",
+        count: 7,
+      },
+    ],
   },
   {
     id: 30,
+    shopId: 3,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
@@ -381,9 +1022,33 @@ export const productsData: ProductData[] = [
     reviewsCount: 320,
     category: "Цветы",
     filter: "Авторские букеты",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [2, 4] as TraitId[],
+    bucketSize: {
+      width: 30,
+      height: 42,
+    },
+    composition: [
+      {
+        name: "Роза",
+        count: 18,
+      },
+      {
+        name: "Пион",
+        count: 6,
+      },
+      {
+        name: "Эвкалипт",
+        count: 7,
+      },
+    ],
   },
   {
     id: 31,
+    shopId: 2,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
@@ -393,149 +1058,505 @@ export const productsData: ProductData[] = [
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1] as TraitId[],
+    bucketSize: {
+      width: 50,
+      height: 70,
+    },
   },
   {
     id: 32,
+    shopId: 2,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
-    title: "Звездопад 31",
+    title: "Звездопад 32",
     description: "Авторская композиция с индивидуальным стилем",
     rating: 4.95,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png"],
+    },
+    traits: [2, 3] as TraitId[],
+    bucketSize: {
+      width: 60,
+      height: 80,
+    },
   },
   {
     id: 33,
+    shopId: 2,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
-    title: "Звездопад 31",
+    title: "Звездопад 33",
     description: "Авторская композиция с индивидуальным стилем",
     rating: 4.95,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [4] as TraitId[],
+    bucketSize: {
+      width: 40,
+      height: 60,
+    },
   },
   {
     id: 34,
+    shopId: 2,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
-    title: "Звездопад 31",
+    title: "Звездопад 34",
     description: "Авторская композиция с индивидуальным стилем",
     rating: 4.95,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 5] as TraitId[],
+    bucketSize: {
+      width: 55,
+      height: 75,
+    },
   },
   {
     id: 35,
+    shopId: 2,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
-    title: "Звездопад 31",
+    title: "Звездопад 35",
     description: "Авторская композиция с индивидуальным стилем",
     rating: 4.95,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png"],
+    },
+    traits: [2] as TraitId[],
+    bucketSize: {
+      width: 45,
+      height: 65,
+    },
   },
   {
     id: 36,
+    shopId: 2,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
-    title: "Звездопад 31",
+    title: "Звездопад 36",
     description: "Авторская композиция с индивидуальным стилем",
     rating: 4.95,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [3, 4] as TraitId[],
+    bucketSize: {
+      width: 50,
+      height: 70,
+    },
   },
   {
     id: 37,
+    shopId: 2,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
-    title: "Звездопад 31",
+    title: "Звездопад 37",
     description: "Авторская композиция с индивидуальным стилем",
     rating: 4.95,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 2] as TraitId[],
+    bucketSize: {
+      width: 60,
+      height: 80,
+    },
   },
   {
     id: 38,
+    shopId: 3,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
-    title: "Звездопад 31",
+    title: "Звездопад 38",
     description: "Авторская композиция с индивидуальным стилем",
     rating: 4.95,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png"],
+    },
+    traits: [5] as TraitId[],
+    bucketSize: {
+      width: 40,
+      height: 60,
+    },
   },
   {
     id: 39,
+    shopId: 3,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
-    title: "Звездопад 31",
+    title: "Звездопад 39",
     description: "Авторская композиция с индивидуальным стилем",
     rating: 4.95,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 3] as TraitId[],
+    bucketSize: {
+      width: 55,
+      height: 75,
+    },
   },
   {
     id: 40,
+    shopId: 3,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
-    title: "Звездопад 31",
+    title: "Звездопад 40",
     description: "Авторская композиция с индивидуальным стилем",
     rating: 4.95,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [2, 4] as TraitId[],
+    bucketSize: {
+      width: 45,
+      height: 65,
+    },
   },
   {
     id: 41,
+    shopId: 3,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
-    title: "Звездопад 31",
+    title: "Звездопад 41",
     description: "Авторская композиция с индивидуальным стилем",
     rating: 4.95,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png"],
+    },
+    traits: [3] as TraitId[],
+    bucketSize: {
+      width: 50,
+      height: 70,
+    },
   },
   {
     id: 42,
+    shopId: 3,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
-    title: "Звездопад 31",
+    title: "Звездопад 42",
     description: "Авторская композиция с индивидуальным стилем",
     rating: 4.95,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 4, 5] as TraitId[],
+    bucketSize: {
+      width: 60,
+      height: 80,
+    },
   },
   {
     id: 43,
+    shopId: 3,
     discount: 0,
     cost: 2500,
     deliveryCost: 199,
-    title: "Звездопад 31",
+    title: "Звездопад 43",
     description: "Авторская композиция с индивидуальным стилем",
     rating: 4.95,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [2, 3] as TraitId[],
+    bucketSize: {
+      width: 40,
+      height: 60,
+    },
+  },
+  // 🎨 Картины Абстракция
+  {
+    id: 44,
+    shopId: 2,
+    discount: 0,
+    cost: 3500,
+    deliveryCost: 199,
+    title: "Абстрактная композиция 1",
+    description: "Современная абстракция в ярких тонах",
+    rating: 4.8,
+    reviewsCount: 150,
+    category: "Картины",
+    filter: "Абстракция",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 2] as TraitId[],
+    bucketSize: {
+      width: 70,
+      height: 90,
+    },
+  },
+  {
+    id: 45,
+    shopId: 2,
+    discount: 0,
+    cost: 3500,
+    deliveryCost: 199,
+    title: "Абстрактная композиция 2",
+    description: "Современная абстракция в ярких тонах",
+    rating: 4.8,
+    reviewsCount: 150,
+    category: "Картины",
+    filter: "Абстракция",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [3] as TraitId[],
+    bucketSize: {
+      width: 60,
+      height: 80,
+    },
+  },
+  {
+    id: 46,
+    shopId: 2,
+    discount: 0,
+    cost: 3500,
+    deliveryCost: 199,
+    title: "Абстрактная композиция 3",
+    description: "Современная абстракция в ярких тонах",
+    rating: 4.8,
+    reviewsCount: 150,
+    category: "Картины",
+    filter: "Абстракция",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png"],
+    },
+    traits: [4, 5] as TraitId[],
+    bucketSize: {
+      width: 50,
+      height: 70,
+    },
+  },
+  {
+    id: 47,
+    shopId: 2,
+    discount: 500,
+    cost: 3500,
+    deliveryCost: 199,
+    title: "Абстрактная композиция 4",
+    description: "Современная абстракция в ярких тонах",
+    rating: 4.8,
+    reviewsCount: 150,
+    category: "Картины",
+    filter: "Абстракция",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 3, 4] as TraitId[],
+    bucketSize: {
+      width: 80,
+      height: 100,
+    },
+  },
+  {
+    id: 48,
+    shopId: 2,
+    discount: 0,
+    cost: 3500,
+    deliveryCost: 199,
+    title: "Абстрактная композиция 5",
+    description: "Современная абстракция в ярких тонах",
+    rating: 4.8,
+    reviewsCount: 150,
+    category: "Картины",
+    filter: "Абстракция",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [2, 5] as TraitId[],
+    bucketSize: {
+      width: 65,
+      height: 85,
+    },
+  },
+  // 🖼️ Картины Реализм
+  {
+    id: 49,
+    shopId: 3,
+    discount: 0,
+    cost: 4500,
+    deliveryCost: 199,
+    title: "Реалистичный пейзаж 1",
+    description: "Реалистичная картина с высокой детализацией",
+    rating: 4.9,
+    reviewsCount: 200,
+    category: "Картины",
+    filter: "Реализм",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: [
+        "/test/Luna.png",
+        "/test/Luna.png",
+        "/test/Luna.png",
+        "/test/Luna.png",
+      ],
+    },
+    traits: [1, 2, 3] as TraitId[],
+    bucketSize: {
+      width: 90,
+      height: 120,
+    },
+  },
+  {
+    id: 50,
+    shopId: 3,
+    discount: 0,
+    cost: 4500,
+    deliveryCost: 199,
+    title: "Реалистичный пейзаж 2",
+    description: "Реалистичная картина с высокой детализацией",
+    rating: 4.9,
+    reviewsCount: 200,
+    category: "Картины",
+    filter: "Реализм",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [4] as TraitId[],
+    bucketSize: {
+      width: 75,
+      height: 95,
+    },
+  },
+  {
+    id: 51,
+    shopId: 3,
+    discount: 0,
+    cost: 4500,
+    deliveryCost: 199,
+    title: "Реалистичный пейзаж 3",
+    description: "Реалистичная картина с высокой детализацией",
+    rating: 4.9,
+    reviewsCount: 200,
+    category: "Картины",
+    filter: "Реализм",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 5] as TraitId[],
+    bucketSize: {
+      width: 80,
+      height: 110,
+    },
+  },
+  {
+    id: 52,
+    shopId: 3,
+    discount: 0,
+    cost: 4500,
+    deliveryCost: 199,
+    title: "Реалистичный пейзаж 4",
+    description: "Реалистичная картина с высокой детализацией",
+    rating: 4.9,
+    reviewsCount: 200,
+    category: "Картины",
+    filter: "Реализм",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png"],
+    },
+    traits: [2, 3, 4] as TraitId[],
+    bucketSize: {
+      width: 70,
+      height: 100,
+    },
+  },
+  {
+    id: 53,
+    shopId: 3,
+    discount: 0,
+    cost: 4500,
+    deliveryCost: 199,
+    title: "Реалистичный пейзаж 5",
+    description: "Реалистичная картина с высокой детализацией",
+    rating: 4.9,
+    reviewsCount: 200,
+    category: "Картины",
+    filter: "Реализм",
+    image: {
+      mainImage: "/test/Luna.png",
+      otherImages: ["/test/Luna.png", "/test/Luna.png", "/test/Luna.png"],
+    },
+    traits: [1, 3, 5] as TraitId[],
+    bucketSize: {
+      width: 85,
+      height: 115,
+    },
   },
 ];

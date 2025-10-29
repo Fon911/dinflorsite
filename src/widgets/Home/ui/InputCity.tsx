@@ -4,7 +4,7 @@ import Check from "./Check";
 export const InputCity = () => {
   return (
     <div>
-      <div className="relative mt-[60px] min-w-[874px] mx-auto">
+      <div className="relative mt-[60px] w-[calc(100%-56px)] max-w-[374px] lg:w-[874px] lg:max-w-none mx-auto">
         {/* Иконка слева */}
         <button>
           <Image

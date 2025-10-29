@@ -1,56 +1,43 @@
 "use client";
 
+import { filtersData } from "@/shared/data";
 import { Category, ServOrShop } from "./LeftFiltersTable";
 
 type FilterMode = "products" | "shops";
 
 interface LeftTableProps {
   onModeChange?: (mode: FilterMode) => void;
+  activeFilter?: { category: string; filter: string | null } | null;
+  onFilterClick?: (category: string, filter: string | null) => void;
+  onCategoryClick?: (category: string) => void;
+  currentMode?: FilterMode;
 }
 
-export const LeftTable = ({ onModeChange }: LeftTableProps) => {
-  const categories = [
-    {
-      id: 1,
-      title: "Картины",
-      filters: [
-        { id: 1, name: "Цветы поштучно" },
-        { id: 2, name: "Композиции" },
-        { id: 3, name: "Розы" },
-        { id: 4, name: "Цветы поштучно" },
-        { id: 5, name: "Композиции" },
-        { id: 6, name: "Розы" },
-        { id: 7, name: "Цветы поштучно" },
-        { id: 8, name: "Композиции" },
-      ],
-    },
-    {
-      id: 2,
-      title: "Игрушки",
-      filters: [
-        { id: 1, name: "Мягкие" },
-        { id: 2, name: "Интерактивные" },
-        { id: 3, name: "Для подарка" },
-        { id: 4, name: "Для подарка" },
-        { id: 5, name: "Для подарка" },
-        { id: 6, name: "Для подарка" },
-        { id: 7, name: "Для подарка" },
-        { id: 8, name: "Для подарка" },
-        { id: 9, name: "Для подарка" },
-        { id: 10, name: "Для подарка" },
-        { id: 11, name: "Для подарка" },
-      ],
-    },
-  ];
+export const LeftTable = ({ onModeChange, activeFilter, onFilterClick, onCategoryClick, currentMode }: LeftTableProps) => {
+  const handleResetFilter = () => {
+    onFilterClick?.("", null);
+  };
 
   return (
     <div className="w-[258px]">
-      <ServOrShop onModeChange={onModeChange} />
-      {categories.map((category) => (
+      <ServOrShop
+        onModeChange={onModeChange}
+        activeFilter={activeFilter}
+        onResetFilter={handleResetFilter}
+        onCategoryClick={onCategoryClick}
+        currentMode={currentMode}
+      />
+      {filtersData.map((category) => (
         <Category
           key={category.id}
-          title={category.title}
-          filters={category.filters}
+          title={category.category}
+          filters={category.filters.map((filter) => ({
+            id: category.id,
+            name: filter.name,
+          }))}
+          activeFilter={activeFilter}
+          onFilterClick={onFilterClick}
+          onCategoryClick={onCategoryClick}
         />
       ))}
     </div>

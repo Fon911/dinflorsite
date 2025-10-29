@@ -10,8 +10,8 @@ export const Shop = ({
 }: {
   ShopName: string;
   DeliveryTime: string;
-  Rating: string;
-  ReviewsCount: string;
+  Rating: number;
+  ReviewsCount: number;
 }) => {
   return (
     <div className=" rounded-[10px] max-w-[445px]">

@@ -19,14 +19,14 @@ export const CheckboxExample = () => {
 
 function Check() {
   return (
-    <div className="mt-[40px]">
+    <div className="mt-[40px] items-center justify-center px-[30px] lg:justify-normal  lg:ml-[0px]">
       <div className="flex items-center gap-[7px]">
         <CheckboxExample />
         <p className="text-[20px] font-medium text-main-200">
           Уточнить у получателя
         </p>
       </div>
-      <p className="text-[16px] font-Light text-main-200 mt-[10px]">
+      <p className="text-[16px] text-left font-Light  text-main-200 mt-[10px]">
         Укажите только город, куда хотите отправить подарок, остальное узнаем
         сами
       </p>

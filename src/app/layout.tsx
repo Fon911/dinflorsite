@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="overflow-x-hidden bg-[#E8F3F2] overflow-y-auto">
+      <body className="bg-[#E8F3F2] overflow-y-auto w-full">
         <Header />
         <div className="mb-[130px]">{children}</div>
         <Footer />

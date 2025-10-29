@@ -97,7 +97,7 @@ const Header = () => {
           </div>
 
           <nav className="flex flex-col gap-6">
-            <a href="#" className="text-lg text-main-200 font-semibold">
+            <a href="/Catalog" className="text-lg text-main-200 font-semibold">
               Каталог
             </a>
             <a href="#" className="text-lg text-main-200 font-semibold">

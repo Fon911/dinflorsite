@@ -1,15 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type FilterMode = "products" | "shops";
 
 interface ServOrShopProps {
   onModeChange?: (mode: FilterMode) => void;
+  activeFilter?: { category: string; filter: string | null } | null;
+  onResetFilter?: () => void;
+  onCategoryClick?: (category: string) => void;
+  currentMode?: FilterMode;
 }
 
-export const ServOrShop = ({ onModeChange }: ServOrShopProps) => {
-  const [mode, setMode] = useState<FilterMode>("products");
+export const ServOrShop = ({ onModeChange, activeFilter, onResetFilter, onCategoryClick, currentMode }: ServOrShopProps) => {
+  const [mode, setMode] = useState<FilterMode>(currentMode || "products");
+
+  useEffect(() => {
+    if (currentMode) {
+      setMode(currentMode);
+    }
+  }, [currentMode]);
 
   const handleModeChange = (newMode: FilterMode) => {
     setMode(newMode);
@@ -50,14 +60,30 @@ export const ServOrShop = ({ onModeChange }: ServOrShopProps) => {
           )}
         </button>
       </div>
-      <div>
-        <button className="">
-          <p>Все товары</p>
+      <div className="text-[14px]">
+        <button
+          onClick={onResetFilter}
+          className="text-gray-700 hover:text-main-200 transition-colors"
+        >
+          {mode === "shops" ? "Магазины" : "Все товары"}
         </button>
-        <span> / </span>
-        <button>
-          <p>Цветы</p>
-        </button>
+        {activeFilter && activeFilter.category && (
+          <>
+            <span className="text-gray-400"> / </span>
+            <button
+              onClick={() => onCategoryClick?.(activeFilter.category)}
+              className="text-gray-700 hover:text-main-200 transition-colors"
+            >
+              {activeFilter.category}
+            </button>
+            {activeFilter.filter && (
+              <>
+                <span className="text-gray-400"> / </span>
+                <span className="text-main-200 font-medium">{activeFilter.filter}</span>
+              </>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
