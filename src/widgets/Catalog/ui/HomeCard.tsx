@@ -1,8 +1,8 @@
 "use client";
+import { CategoryCard } from "@/entities/category";
 import { extraFilters } from "@/shared/data";
 import Image from "next/image";
 import { useState } from "react";
-import Card from "./onecount/Card";
 
 export const HomeCard = () => {
   const [startIndex, setStartIndex] = useState(0);
@@ -46,7 +46,7 @@ export const HomeCard = () => {
         >
           {extraFilters.map((filter, i) => (
             <div className="flex-shrink-0 w-[calc(100%/5)]" key={i}>
-              <Card {...filter} title={filter.name} image={filter.image} />
+              <CategoryCard title={filter.name} image={filter.image} />
             </div>
           ))}
         </div>

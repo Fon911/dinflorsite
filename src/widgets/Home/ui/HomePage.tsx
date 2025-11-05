@@ -7,7 +7,7 @@ import { Category } from "./Category";
 
 export const HomePage = () => {
   return (
-    <div className="mb-[130px]">
+    <div className="container-1440 mb-[130px]">
       <div className="mt-[90px] justify-center text-center items-center flex flex-col">
         <h1 className="lg:text-[32px] text-[24px] font-bold lg:font-medium">
           Надежная доставка от 30 минут

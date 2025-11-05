@@ -1,3 +1,5 @@
+"use client";
+
 import { ProductData } from "@/shared/data/products";
 import { Trait, traitsData } from "@/shared/data/traits";
 import Image from "next/image";
@@ -65,7 +67,7 @@ const Info = ({ product }: { product: ProductData }) => {
     : [];
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 max-w-[500px]">
       {productTraits.length > 0 && (
         <div className="flex flex-row gap-2">
           {productTraits.map((trait: Trait) => (

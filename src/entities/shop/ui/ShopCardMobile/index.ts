@@ -1,0 +1,1 @@
+export { ShopCardMobile } from "./ShopCardMobile";

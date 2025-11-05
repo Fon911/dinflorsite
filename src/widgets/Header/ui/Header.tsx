@@ -3,6 +3,7 @@
 import { useToggle } from "@/shared/hooks/useToggle";
 import { DropDownArrow } from "@/shared/ui";
 import Image from "next/image";
+import Link from "next/link";
 import HeaderBurger from "./HeaderBurger";
 
 const Header = () => {
@@ -16,8 +17,8 @@ const Header = () => {
   return (
     <div className="w-full items-center justify-center bg-white">
       {/* Основной хедер */}
-      <div className="px-4 md:px-8 lg:px-[107px] pb-[11px] flex flex-row items-center justify-between pt-[11px]">
-        <a href="/">
+      <div className="container-1440 px-4 md:px-8 lg:px-[107px] pb-[11px] flex flex-row items-center justify-between pt-[11px]">
+        <Link href="/">
           <Image
             src="/icon/ui/HeaderIcon.png"
             alt="HeaderIcon"
@@ -26,7 +27,7 @@ const Header = () => {
             priority
             className=" "
           />
-        </a>
+        </Link>
         {/* Десктопное меню */}
         <div className="hidden lg:flex flex-row">
           <ul className="flex flex-row items-center  font-semibold gap-[50px] text-[15px] text-main-200">
@@ -48,7 +49,9 @@ const Header = () => {
               </button>
             </li>
             <li>
-              <button className="font-normal">Войти</button>
+              <a href="/Login" className="font-normal">
+                Войти
+              </a>
             </li>
           </ul>
         </div>
@@ -131,16 +134,16 @@ const Header = () => {
               Продавайте на DinFlor
             </button>
 
-            <button className="text-lg text-main-200 font-normal mt-2">
+            <a href="/Login" className="text-lg text-main-200 font-normal mt-2">
               Войти
-            </button>
+            </a>
           </nav>
         </div>
       </div>
 
       {/* Черная навигационная панель - только десктоп */}
-      <div className="hidden lg:flex py-[11px] flex-row bg-black">
-        <ul className="font-normal flex flex-row items-center  mx-auto gap-[44px] text-[15px] text-white">
+      <div className="hidden  lg:flex py-[11px] flex-row bg-black">
+        <ul className="container-1440 font-normal flex flex-row items-center justify-center mx-auto gap-[44px] text-[15px] text-white">
           <li>
             <button
               onClick={deliveryTime.toggle}

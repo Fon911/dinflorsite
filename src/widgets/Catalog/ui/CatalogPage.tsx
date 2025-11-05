@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { FiltersInputs } from "./FiltersInputs";
 import { HomeCard } from "./HomeCard";
 import { HomeCardMobile } from "./HomeCardMobile";
@@ -5,7 +6,7 @@ import { Services } from "./Services";
 
 export const CatalogPage = () => {
   return (
-    <div className="mb-[130px]">
+    <div className="container-1440 mb-[130px]">
       <div className="px-[15px] lg:px-[117px] ">
         <div className="justify-center items-center flex flex-col">
           <h1 className="mt-[75px] text-center px-[15px] lg:px-[0px] text-[24px] font-bold lg:mt-[75px] lg:text-[32px] lg:font-medium">
@@ -27,7 +28,9 @@ export const CatalogPage = () => {
           <FiltersInputs />
         </div>
         <div className=" mt-[11px] lg:mt-[48px] ">
-          <Services />
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <Services />
+          </Suspense>
         </div>
       </div>
     </div>

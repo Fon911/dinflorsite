@@ -1,0 +1,1 @@
+export { ShopCardCompact } from "./ShopCardCompact";

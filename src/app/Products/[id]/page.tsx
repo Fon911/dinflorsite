@@ -1,5 +1,5 @@
-import { ProductsPage } from "@/widgets/Products/";
+import { ProductPage } from "@/widgets/ProductPage";
 
-export default function ProductPage() {
-  return <ProductsPage />;
+export default function Page() {
+  return <ProductPage />;
 }

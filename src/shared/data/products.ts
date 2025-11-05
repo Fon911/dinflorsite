@@ -1120,7 +1120,7 @@ export const productsData: ProductData[] = [
     deliveryCost: 199,
     title: "Звездопад 34",
     description: "Авторская композиция с индивидуальным стилем",
-    rating: 4.95,
+    rating: 4.92,
     reviewsCount: 320,
     category: "Картины",
     filter: "Модерн",

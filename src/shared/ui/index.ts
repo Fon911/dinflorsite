@@ -1,5 +1,5 @@
-import Products from "./Cards/Products";
-import Shop from "./Cards/Shop";
+import Check from "./Check";
 import DropDownArrow from "./DropDownArrow";
+import Input from "./Input";
 import Layout from "./Layout";
-export { DropDownArrow, Layout, Products, Shop };
+export { Check, DropDownArrow, Input, Layout };

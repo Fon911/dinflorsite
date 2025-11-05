@@ -1,6 +1,6 @@
 "use client";
+import { CategoryCard } from "@/entities/category";
 import { extraFilters } from "@/shared/data";
-import Card from "./onecount/Card";
 
 export const HomeCardMobile = () => {
   return (
@@ -9,7 +9,7 @@ export const HomeCardMobile = () => {
         <div className="flex gap-4 px-4 py-2 w-max">
           {extraFilters.map((filter, i) => (
             <div key={i} className="flex-shrink-0 w-[90px] snap-center">
-              <Card {...filter} title={filter.name} image={filter.image} />
+              <CategoryCard title={filter.name} image={filter.image} />
             </div>
           ))}
         </div>

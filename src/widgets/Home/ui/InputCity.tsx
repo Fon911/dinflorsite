@@ -1,9 +1,9 @@
+import { Check } from "@/shared/ui";
 import Image from "next/image";
-import Check from "./Check";
 
 export const InputCity = () => {
   return (
-    <div>
+    <div className="">
       <div className="relative mt-[60px] w-[calc(100%-56px)] max-w-[374px] lg:w-[874px] lg:max-w-none mx-auto">
         {/* Иконка слева */}
         <button>
@@ -35,7 +35,13 @@ export const InputCity = () => {
           />
         </button>
       </div>
-      <Check />
+      <div className="mt-[40px] px-[26px]">
+        <Check title="Уточнить у покупателя" fontSize="20px" />
+        <p className="text-[16px] text-left font-Light  text-main-200 mt-[10px]">
+          Укажите только город, куда хотите отправить подарок, остальное узнаем
+          сами
+        </p>
+      </div>
     </div>
   );
 };

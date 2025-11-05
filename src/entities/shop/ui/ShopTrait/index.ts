@@ -1,0 +1,1 @@
+export { ShopTrait } from "./ShopTrait";

@@ -1,7 +1,8 @@
 "use client";
 
+import { ProductCard } from "@/entities/product";
+import { ShopCard } from "@/entities/shop";
 import { productsData, shopsData } from "@/shared/data";
-import { Products, Shop } from "@/shared/ui/";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { LeftTable } from "./LeftTable";
@@ -150,12 +151,12 @@ export const Services = () => {
           <div
             className={`${
               mode === "products"
-                ? "grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-[10px] lg:mr-[20px]"
+                ? "grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-[10px] lg:mr-[20px]"
                 : "hidden"
             }`}
           >
             {filteredProducts.slice(0, visibleProducts).map((product) => (
-              <Products
+              <ProductCard
                 key={product.id}
                 id={product.id}
                 discount={product.discount}
@@ -190,12 +191,13 @@ export const Services = () => {
             }`}
           >
             {filteredShops.slice(0, visibleShops).map((shop) => (
-              <Shop
+              <ShopCard
                 key={shop.id}
                 ShopName={shop.ShopName}
                 DeliveryTime={shop.DeliveryTime}
                 Rating={shop.Rating}
                 ReviewsCount={shop.ReviewsCount}
+                shopId={shop.id}
               />
             ))}
           </div>

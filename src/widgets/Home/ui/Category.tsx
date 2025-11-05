@@ -14,7 +14,7 @@ export const Category = () => {
             className="w-full h-full object-cover rounded-[30px]"
           />
         </button>
-        <h2 className="absolute top-[25px] left-1/2 -translate-x-1/2 text-[20px] font-extrabold text-white">
+        <h2 className="absolute text-[18px] top-[25px] left-1/2 -translate-x-1/2 sm:text-[20px] font-extrabold text-white">
           Цветы и подарки
         </h2>
         <div className="absolute top-[69px] left-[25px]">

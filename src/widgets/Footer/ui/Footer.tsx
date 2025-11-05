@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="w-full bg-[#151515] text-white">
       {/* Основной контент футера */}
-      <div className="px-4 md:px-8 lg:px-[118px] py-8 md:py-12 lg:py-16">
+      <div className="container-1440 px-4 md:px-8  py-8 md:py-12 lg:py-16">
         {/* Мобильная версия - карточка магазинам наверху */}
         <div className="lg:hidden">
           {/* Колонка Магазинам - первая на мобилке */}
@@ -149,7 +149,7 @@ const Footer = () => {
       </div>
 
       {/* Нижняя часть футера */}
-      <div className="px-4 md:px-8 lg:px-[118px] py-6">
+      <div className="container-1440 px-4 md:px-8 lg:px-[118px] py-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}
           <p className="text-[#696969] text-[15px] font-medium">

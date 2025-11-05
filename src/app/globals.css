@@ -58,4 +58,12 @@ body {
     -ms-overflow-style: none; /* IE и Edge */
     scrollbar-width: none; /* Firefox */
   }
+
+  /* Контейнер 1440px */
+  .container-1440 {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
 }

@@ -1,6 +1,6 @@
 "use client";
+import { ProductCard } from "@/entities/product";
 import { productsData } from "@/shared/data";
-import { Products } from "@/shared/ui/Cards";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -26,7 +26,7 @@ export const CardCategory = ({ categoryName }: CardCategoryProps) => {
 
       <div className="grid grid-cols-2  px-[20px] gap-[16px] xl:grid-cols-3 lg:gap-[20px]">
         {categoryProducts.slice(0, visibleProducts).map((product) => (
-          <Products
+          <ProductCard
             key={product.id}
             id={product.id}
             discount={product.discount}
