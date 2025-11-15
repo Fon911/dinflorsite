@@ -3,6 +3,7 @@
 import { ProductData } from "@/shared/data/products";
 import Image from "next/image";
 import { useState } from "react";
+import { FavoriteButton } from "@/features/toggle-favorite";
 
 export default function ImageMobile({ product }: { product: ProductData }) {
   // Объединяем mainImage и otherImages в один массив
@@ -46,15 +47,14 @@ export default function ImageMobile({ product }: { product: ProductData }) {
           <button>
             <Image src="/icon/ui/share.png" alt="" width={24} height={29} />
           </button>
-          <button className="w-[35px] h-[30px]">
-            <Image
-              src="/icon/ui/like.png"
-              alt=""
-              width={33}
-              height={30}
-              className="object-contain w-full h-full"
-            />
-          </button>
+          <FavoriteButton
+            id={product.id}
+            type="product"
+            data={product}
+            navigateAfterAdd={true}
+            iconWidth={33}
+            iconHeight={30}
+          />
         </div>
 
         <div

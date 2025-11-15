@@ -1,23 +1,32 @@
 "use client";
 
+import { useCart } from "@/shared/store";
+import { ProductData } from "@/shared/data/products";
+import { useRouter } from "next/navigation";
+
 interface AddToCartButtonProps {
-  productId: number;
+  product: ProductData;
   className?: string;
 }
 
 export const AddToCartButton = ({
-  productId,
+  product,
   className = "",
 }: AddToCartButtonProps) => {
+  const { addToCart } = useCart();
+  const router = useRouter();
+
   const handleAddToCart = () => {
-    // TODO: Реализовать логику добавления в корзину
-    console.log("Добавлен в корзину продукт с ID:", productId);
+    addToCart(product);
+    setTimeout(() => {
+      router.push("/Cart");
+    }, 100);
   };
 
   return (
     <button
       onClick={handleAddToCart}
-      className={`flex-1 bg-main-100 border-main-100 text-white text-[16px] font-semibold py-[14px] rounded-[50px] ${className}`}
+      className={`flex-1 bg-main-100 border-main-100 text-white text-[16px] font-semibold py-[14px] rounded-[50px] hover:bg-[#222] transition ${className}`}
     >
       В корзину
     </button>

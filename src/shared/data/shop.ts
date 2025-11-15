@@ -1,18 +1,22 @@
 export interface Shop {
   id: number;
-  name: string;
-  rating: number;
+  ShopImage: string;
+  ShopName: string;
+  DeliveryTime: string;
+  Rating: number;
+  ReviewsCount: number;
+  description: string;
   ShopCoverImage: {
     main: string;
     others: [string?, string?]; // максимум 2 изображения
   };
   SoldCount: number;
   DaySet: number;
-  OrderInTime: string;
-  description: string;
+  OrderInTime: number;
+  TopShop: boolean;
 }
 
-export const shopsData = [
+export const shopsData: Shop[] = [
   {
     id: 1,
     ShopImage: "/test/Luna.png",

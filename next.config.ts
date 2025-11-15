@@ -1,9 +1,8 @@
-/** @type {import('next').NextConfig} */
+import type { NextConfig } from "next";
 
-const nextConfig = {
-  output: "export", // 👈 Включает статическую сборку
+const nextConfig: NextConfig = {
   images: {
-    unoptimized: true, // 👈 Чтобы работали картинки без Next Image Optimization
+    unoptimized: true,
   },
 };
 

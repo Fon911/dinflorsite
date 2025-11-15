@@ -166,6 +166,7 @@ export const Services = () => {
                 description={product.description}
                 rating={product.rating}
                 reviewsCount={product.reviewsCount}
+                productData={product}
               />
             ))}
           </div>
@@ -186,7 +187,7 @@ export const Services = () => {
           <div
             className={`${
               mode === "shops"
-                ? "grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 gap-[3px] gap-y-[20px]"
+                ? "grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-[3px] gap-y-[20px]"
                 : "hidden"
             }`}
           >
@@ -198,6 +199,20 @@ export const Services = () => {
                 Rating={shop.Rating}
                 ReviewsCount={shop.ReviewsCount}
                 shopId={shop.id}
+                shopData={{
+                  id: shop.id,
+                  ShopName: shop.ShopName,
+                  ShopImage: shop.ShopImage,
+                  DeliveryTime: shop.DeliveryTime,
+                  Rating: shop.Rating,
+                  ReviewsCount: shop.ReviewsCount,
+                  ShopCoverImage: { main: shop.ShopImage, others: [] },
+                  SoldCount: 0,
+                  DaySet: 0,
+                  OrderInTime: 90,
+                  TopShop: false,
+                  description: ""
+                }}
               />
             ))}
           </div>

@@ -65,7 +65,7 @@ export default function ProductPageMobile({
 
       {/* Фиксированные кнопки внизу */}
       <div className="fixed bottom-[34px] left-0 right-0 px-[15px] py-[12px] flex justify-between items-center gap-3 z-50">
-        <AddToCartButton productId={product.id} />
+        <AddToCartButton product={product} />
         <BuyNowButton productId={product.id} />
       </div>
     </div>

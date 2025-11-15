@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/features/auth/Login";
+import { Button } from "@/features/auth";
 import { Check, Input, Layout } from "@/shared/ui";
 import { useState } from "react";
 
@@ -43,7 +43,10 @@ export const LoginPage = () => {
           <p className="text-[14px] font-medium text-main-200 mr-1">
             Нет аккаунта?{" "}
           </p>
-          <a href="/Register" className="text-[14px] font-medium text-main-100">
+          <a
+            href="(auth)/Register"
+            className="text-[14px] font-medium text-main-100"
+          >
             Зарегистрироваться
           </a>
         </div>

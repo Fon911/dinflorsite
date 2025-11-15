@@ -1,5 +1,9 @@
+"use client";
+
 import { ProductData } from "@/shared/data/products";
+import { useCart } from "@/shared/store";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface ShopData {
   id: number;
@@ -16,6 +20,8 @@ interface ButtonProps {
 }
 
 export default function Button({ product, shopsData }: ButtonProps) {
+  const { addToCart } = useCart();
+  const router = useRouter();
   const fmt = (n: number) => new Intl.NumberFormat("ru-RU").format(n);
   const finalCost = product.discount
     ? product.cost - product.discount
@@ -56,10 +62,26 @@ export default function Button({ product, shopsData }: ButtonProps) {
         )}
       </div>
       <div className="flex flex-col items-center gap-2 mt-[14px]">
-        <button className="bg-main-100 text-white py-4 px-[50px] font-semibold text-[16px] rounded-[100px]">
+        <button
+          onClick={() => {
+            addToCart(product);
+            setTimeout(() => {
+              router.push("/Cart");
+            }, 100);
+          }}
+          className="bg-main-100 text-white py-4 px-[50px] font-semibold text-[16px] rounded-[100px]  transition"
+        >
           Добавить в корзину
         </button>
-        <button className="border-main-100 text-main-100 border-[1px] py-4 px-[70px] font-semibold text-[16px] rounded-[100px]">
+        <button
+          onClick={() => {
+            addToCart(product);
+            setTimeout(() => {
+              router.push("/Cart");
+            }, 100);
+          }}
+          className="border-main-100 text-main-100 border-[1px] py-4 px-[70px] font-semibold text-[16px] rounded-[100px]  transition"
+        >
           Купить сейчас
         </button>
       </div>

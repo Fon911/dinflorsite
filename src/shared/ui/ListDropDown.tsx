@@ -1,17 +1,17 @@
 "use client";
 import Image from "next/image";
 
-interface BurgerListDropDownProps {
+interface ListDropDownProps {
   white?: boolean;
   isOpen?: boolean;
   className?: string;
 }
 
-export default function BurgerListDropDown({
+export default function ListDropDown({
   white,
   isOpen,
   className,
-}: BurgerListDropDownProps) {
+}: ListDropDownProps) {
   return (
     <div className={`flex items-center ${className || ""}`}>
       <Image

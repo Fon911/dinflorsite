@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/features/auth/Login";
+import { Button } from "@/features/auth";
 import { Check, Input, Layout } from "@/shared/ui";
 import { useState } from "react";
 

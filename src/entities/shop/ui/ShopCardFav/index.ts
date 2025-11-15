@@ -1,0 +1,1 @@
+export { ShopCardFav } from "./ShopCardFav";

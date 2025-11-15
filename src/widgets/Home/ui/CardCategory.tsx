@@ -36,6 +36,7 @@ export const CardCategory = ({ categoryName }: CardCategoryProps) => {
             description={product.description}
             rating={product.rating}
             reviewsCount={product.reviewsCount}
+            productData={product}
           />
         ))}
       </div>

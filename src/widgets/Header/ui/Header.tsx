@@ -4,15 +4,65 @@ import { useToggle } from "@/shared/hooks/useToggle";
 import { DropDownArrow } from "@/shared/ui";
 import Image from "next/image";
 import Link from "next/link";
-import HeaderBurger from "./HeaderBurger";
+import { useEffect, useRef } from "react";
+import { BurgerMenuDesktop } from "./BurgerMenuDesktop";
+import { LanguageDrop } from "./DropDown";
+import { DeliveryTime } from "./DropDown/DeliveryTime";
+import { Dilivery } from "./DropDown/Dilivery";
+import { HeaderMobile } from "./HeaderMobile";
 
-const Header = () => {
+const Header = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   // Отдельные состояния для каждой кнопки
   const deliveryTime = useToggle();
   const deliveryAddress = useToggle();
   const currency = useToggle();
   const language = useToggle();
-  const burgerMenu = useToggle();
+  const burgerMenuDesktop = useToggle();
+
+  // Refs для dropdown'ов
+  const deliveryTimeRef = useRef<HTMLLIElement>(null);
+  const deliveryAddressRef = useRef<HTMLLIElement>(null);
+  const currencyRef = useRef<HTMLLIElement>(null);
+  const languageRef = useRef<HTMLLIElement>(null);
+
+  // Закрытие dropdown'ов при клике вне их
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        deliveryTimeRef.current &&
+        !deliveryTimeRef.current.contains(event.target as Node) &&
+        deliveryTime.isOpen
+      ) {
+        deliveryTime.setIsOpen(false);
+      }
+      if (
+        deliveryAddressRef.current &&
+        !deliveryAddressRef.current.contains(event.target as Node) &&
+        deliveryAddress.isOpen
+      ) {
+        deliveryAddress.setIsOpen(false);
+      }
+      if (
+        currencyRef.current &&
+        !currencyRef.current.contains(event.target as Node) &&
+        currency.isOpen
+      ) {
+        currency.setIsOpen(false);
+      }
+      if (
+        languageRef.current &&
+        !languageRef.current.contains(event.target as Node) &&
+        language.isOpen
+      ) {
+        language.setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [deliveryTime, deliveryAddress, currency, language]);
 
   return (
     <div className="w-full items-center justify-center bg-white">
@@ -49,116 +99,58 @@ const Header = () => {
               </button>
             </li>
             <li>
-              <a href="/Login" className="font-normal">
-                Войти
-              </a>
+              <div className="flex items-center gap-3 bg-[#EDEDED] rounded-[6px] px-[6px] py-[6px]">
+                <Link href="/Profile" className="hover:opacity-70 transition">
+                  <Image
+                    src="/icon/ui/Profile.png"
+                    alt="Профиль"
+                    width={24}
+                    height={24}
+                  />
+                </Link>
+                <button
+                  onClick={burgerMenuDesktop.toggle}
+                  className="hover:opacity-70 transition"
+                >
+                  <Image
+                    src="/icon/ui/3ClipPath.png"
+                    alt="Меню"
+                    width={24}
+                    height={24}
+                  />
+                </button>
+              </div>
             </li>
           </ul>
         </div>
 
         {/* Мобильное меню - селекторы и бургер */}
-        <div className="flex lg:hidden items-center gap-4">
-          <button onClick={currency.toggle} className="flex items-center gap-1">
-            <span className="leading-none font-normal text-[15px] text-main-200">
-              RUB
-            </span>
-            <DropDownArrow isOpen={currency.isOpen} />
-          </button>
-
-          <button onClick={language.toggle} className="flex items-center gap-1">
-            <Image
-              src="/icon/misc/flag-russia.svg"
-              alt="Russia"
-              width={24}
-              height={24}
-            />
-            <DropDownArrow isOpen={language.isOpen} />
-          </button>
-
-          <HeaderBurger
-            isOpen={burgerMenu.isOpen}
-            onClick={burgerMenu.toggle}
-          />
-        </div>
+        <HeaderMobile />
       </div>
 
-      {/* Полноэкранное меню для мобильной версии */}
-      <div
-        className={`fixed top-0 right-0 h-full w-full bg-white shadow-2xl transform transition-transform duration-300 z-50 lg:hidden ${
-          burgerMenu.isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="p-6">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl font-semibold text-main-200">Меню</h2>
-            <button
-              onClick={burgerMenu.toggle}
-              className="text-4xl text-main-200 w-10 h-10 flex items-center justify-center"
-            >
-              ×
-            </button>
-          </div>
-
-          <nav className="flex flex-col gap-6">
-            <a href="/Catalog" className="text-lg text-main-200 font-semibold">
-              Каталог
-            </a>
-            <a href="#" className="text-lg text-main-200 font-semibold">
-              Тренды
-            </a>
-
-            <button
-              onClick={deliveryTime.toggle}
-              className="flex items-center gap-2 text-left text-main-200"
-            >
-              <span className="leading-none">Как можно скорее</span>
-              <DropDownArrow isOpen={deliveryTime.isOpen} />
-            </button>
-
-            <button
-              onClick={deliveryAddress.toggle}
-              className="flex items-center gap-2 text-left text-main-200"
-            >
-              <span className="leading-none">Указать адрес доставки</span>
-              <DropDownArrow isOpen={deliveryAddress.isOpen} />
-            </button>
-
-            <a href="#" className="text-lg text-main-200 font-semibold">
-              Скидки
-            </a>
-            <a href="#" className="text-lg text-main-200 font-semibold">
-              Откройте в приложении
-            </a>
-
-            <button className="text-white px-[16px] py-[10px] rounded-[20px] bg-main-100 text-center font-semibold mt-4">
-              Продавайте на DinFlor
-            </button>
-
-            <a href="/Login" className="text-lg text-main-200 font-normal mt-2">
-              Войти
-            </a>
-          </nav>
-        </div>
-      </div>
+      {/* Бургер меню для десктопа */}
+      <BurgerMenuDesktop
+        isLoggedIn={isLoggedIn}
+        isOpen={burgerMenuDesktop.isOpen}
+        onClose={burgerMenuDesktop.toggle}
+      />
 
       {/* Черная навигационная панель - только десктоп */}
       <div className="hidden  lg:flex py-[11px] flex-row bg-black">
         <ul className="container-1440 font-normal flex flex-row items-center justify-center mx-auto gap-[44px] text-[15px] text-white">
-          <li>
+          <li ref={deliveryTimeRef}>
             <button
               onClick={deliveryTime.toggle}
               className="flex items-center gap-1"
             >
               <span className="leading-none">Как можно скорее</span>
-              <DropDownArrow
-                white
-                isOpen={deliveryTime.isOpen}
-                className="translate-y-[2px]"
-              />
+              <DropDownArrow white isOpen={deliveryTime.isOpen} left={-319}>
+                <DeliveryTime onClose={deliveryTime.toggle} />
+              </DropDownArrow>
             </button>
           </li>
 
-          <li>
+          <li ref={deliveryAddressRef}>
             <button
               onClick={deliveryAddress.toggle}
               className="flex items-center gap-1"
@@ -167,12 +159,15 @@ const Header = () => {
               <DropDownArrow
                 white
                 isOpen={deliveryAddress.isOpen}
-                className="translate-y-[2px]"
-              />
+                className=""
+                left={-448}
+              >
+                <Dilivery onClose={deliveryAddress.toggle} />
+              </DropDownArrow>
             </button>
           </li>
 
-          <li>
+          <li ref={currencyRef}>
             <button
               onClick={currency.toggle}
               className="flex items-center gap-1"
@@ -186,7 +181,7 @@ const Header = () => {
             </button>
           </li>
 
-          <li>
+          <li ref={languageRef}>
             <button
               onClick={language.toggle}
               className="flex items-center gap-1"
@@ -202,7 +197,10 @@ const Header = () => {
                 white
                 isOpen={language.isOpen}
                 className="translate-y-[2px]"
-              />
+                left={-88}
+              >
+                <LanguageDrop />
+              </DropDownArrow>
             </button>
           </li>
         </ul>

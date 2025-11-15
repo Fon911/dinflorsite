@@ -4,6 +4,7 @@ import { ProductCard } from "@/entities/product";
 import { ShopDescription, ShopInfo, ShopReviews } from "@/entities/shop";
 import { productReviewsData, productsData, shopsData } from "@/shared/data";
 import { FiltersInputs } from "@/widgets/Catalog";
+import { useFavorites } from "@/shared/store";
 
 import Layout from "@/shared/ui/Layout";
 import Image from "next/image";
@@ -11,6 +12,7 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 export const ShopPage = () => {
   const { id } = useParams();
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
 
   // Получаем магазин по id
   const shop = shopsData.find((p) => p.id === Number(id));
@@ -39,14 +41,20 @@ export const ShopPage = () => {
   const hasMoreReviews = shopProductReviews.length > visibleReviewsCount;
 
   const handleAddToFavorites = () => {
-    // TODO: Добавить логику добавления в избранное
-    console.log("Add to favorites", id);
+    if (!shop) return;
+
+    if (isFavorite(shop.id, "shop")) {
+      removeFromFavorites(shop.id, "shop");
+    } else {
+      addToFavorites(shop, "shop");
+    }
   };
 
   const handleShare = () => {
-    // TODO: Добавить логику поделиться
     navigator.clipboard.writeText(window.location.href);
   };
+
+  const isShopFavorite = shop ? isFavorite(shop.id, "shop") : false;
 
   const rightIcons = (
     <>
@@ -54,7 +62,12 @@ export const ShopPage = () => {
         onClick={handleAddToFavorites}
         className="w-[30px] h-[30px] flex items-center justify-center hover:opacity-70 transition-opacity"
       >
-        <Image src="/icon/ui/like.png" alt="Избранное" width={30} height={30} />
+        <Image
+          src={isShopFavorite ? "/icon/ui/FIllLIke.png" : "/icon/ui/like.png"}
+          alt="Избранное"
+          width={30}
+          height={30}
+        />
       </button>
       <button
         onClick={handleShare}
@@ -114,6 +127,7 @@ export const ShopPage = () => {
                   description={product.description}
                   rating={product.rating}
                   reviewsCount={product.reviewsCount}
+                  productData={product}
                 />
               ))}
             </div>

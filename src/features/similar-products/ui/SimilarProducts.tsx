@@ -77,6 +77,7 @@ export const SimilarProducts = ({
                 description={product.description}
                 rating={product.rating}
                 reviewsCount={product.reviewsCount}
+                productData={product}
               />
             </div>
           ))}
